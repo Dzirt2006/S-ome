@@ -1,4 +1,5 @@
 
+import java.awt.Canvas;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -11,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -85,12 +87,11 @@ public class Frame extends JFrame {
         tabmain.add(c);
 
         //поле для вывода
-        resultD = new JTextArea();
-        resultD.setBounds(50, 133, 128, 28);
-        tabmain.add(resultD);
-
+//        resultD = new JTextArea();     //запаска
+//        resultD.setBounds(50, 133, 128, 28);
+//        tabmain.add(resultD);
         resultX = new JTextArea();
-        resultX.setBounds(50, 171, 128, 56);
+        resultX.setBounds(50, 171, 140, 48);
         tabmain.add(resultX);
 
         //кнопки
@@ -103,15 +104,19 @@ public class Frame extends JFrame {
                 double A, B, C;
                 String ja, jb, jc;
                 Algorithm alg = new Algorithm();
-                ProgrammEnter ent = new ProgrammEnter();
-                ja = ax.getText().toString();
-                A = Double.parseDouble(ja);
-                jb = bx.getText().toString();
-                B = Double.parseDouble(jb);
-                jc = c.getText().toString();
-                C = Double.parseDouble(jc);
-                alg.setABC(A, B, C);
-                resultX.setText(alg.Algorithm());
+                ProgrammEnter ent = new ProgrammEnter();//лишнее
+                try {
+                    ja = ax.getText().toString();
+                    A = Double.parseDouble(ja);
+                    jb = bx.getText().toString();
+                    B = Double.parseDouble(jb);
+                    jc = c.getText().toString();
+                    C = Double.parseDouble(jc);
+                    alg.setABC(A, B, C);
+                    resultX.setText(alg.Algorithm());
+                } catch (NumberFormatException i) {
+                    System.err.println(i);
+                }
 
             }
 
@@ -120,10 +125,21 @@ public class Frame extends JFrame {
         clearButton = new JButton("Clear");
         clearButton.setBounds(440, 133, 100, 28);
         tabmain.add(clearButton);
+        clearButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ax.setText("");
+                bx.setText("");
+                c.setText("");
+                resultX.setText("");
+            }
+
+        });
 
         exitButton = new JButton("Exit");
         exitButton.setBounds(450, 279, 80, 28);
         tabmain.add(exitButton);
+        exitButton.addActionListener(e -> System.exit(0));
 
         setResizable(false);//запрет на изменение размера окна
         setVisible(true);//видимость окна
