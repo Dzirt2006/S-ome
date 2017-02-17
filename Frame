@@ -34,8 +34,6 @@ public class Frame extends JFrame {
     private JButton exitButton;
     private JPanel tabmain;
     private JPanel tabgrapf;
-    
-            
 
     public Frame() {
         point = new Point(500, 100);
@@ -44,104 +42,92 @@ public class Frame extends JFrame {
         //setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocation(point);
         setSize(dimension);
-        container=getContentPane();
+        container = getContentPane();
         container.setLayout(null);//отказ от компановщика
         setDefaultCloseOperation(EXIT_ON_CLOSE);//завершение работы всего кода при закрытии окна
-        
-         
-        JTabbedPane maindeck=new JTabbedPane(); //основное поле(сцена)
+
+        JTabbedPane maindeck = new JTabbedPane(); //основное поле(сцена)
         maindeck.setBounds(2, 2, 590, 367);
         container.add(maindeck);
 
-                
-        JPanel tabmain=new JPanel(null);          //Вкладки
+        JPanel tabmain = new JPanel(null);          //Вкладки
         maindeck.add("formula", tabmain);
-        JPanel tabgrapf=new JPanel(null); //нужные эллементы встали на свое место только после обьявления null(разобраться почему!!!)
-        maindeck.add("grapfick",tabgrapf);
-        
-        
+        JPanel tabgrapf = new JPanel(null); //нужные эллементы встали на свое место только после обьявления null(разобраться почему!!!)
+        maindeck.add("grapfick", tabgrapf);
+
         // не изменяемые промежутки
-        JLabel xpow2=new JLabel("xpow2 + ");
+        JLabel xpow2 = new JLabel("xpow2 + ");
         xpow2.setBounds(95, 85, 60, 28);
         tabmain.add(xpow2);
-        
-        JLabel x=new JLabel("x+");
+
+        JLabel x = new JLabel("x+");
         x.setBounds(195, 85, 28, 28);
         tabmain.add(x);
-        
-        JLabel equal=new JLabel("= 0");
+
+        JLabel equal = new JLabel("= 0");
         equal.setBounds(263, 85, 28, 28);
         tabmain.add(equal);
-        
-        
+
         //ячейки для ввода
-        ax=new JTextField("");
+        ax = new JTextField("");
         ax.setBounds(50, 85, 40, 28);
         ax.setToolTipText("enter a");
         tabmain.add(ax);
-        
-        bx=new JTextField("");
+
+        bx = new JTextField("");
         bx.setBounds(150, 85, 40, 28);
         bx.setToolTipText("enter b");
-       tabmain.add(bx);
-       
-       c=new JTextField("");
-       c.setBounds(218, 85, 40, 28);
-       c.setToolTipText("enter c");
-       tabmain.add(c);
-        
-       //поле для вывода
-       resultD=new JTextArea();             
+        tabmain.add(bx);
+
+        c = new JTextField("");
+        c.setBounds(218, 85, 40, 28);
+        c.setToolTipText("enter c");
+        tabmain.add(c);
+
+        //поле для вывода
+        resultD = new JTextArea();
         resultD.setBounds(50, 133, 128, 28);
         tabmain.add(resultD);
-        
-        resultX=new JTextArea();
+
+        resultX = new JTextArea();
         resultX.setBounds(50, 171, 128, 56);
         tabmain.add(resultX);
-        
+
         //кнопки
-        resultButton=new JButton("Result");
+        resultButton = new JButton("Result");
         resultButton.setBounds(440, 85, 100, 28);
         tabmain.add(resultButton);
-        resultButton.addActionListener(new ActionListener () {
+        resultButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 double A, B, C;
-                String ja,jb,jc;
-                Algorithm alg=new Algorithm();
-                ProgrammEnter ent=new ProgrammEnter();
-              ja=ax.getText().toString();
-              A=Double.parseDouble(ja);
-              jb=bx.getText().toString();
-              B=Double.parseDouble(jb);
-              jc=c.getText().toString();
-              C=Double.parseDouble(jc);
-//               A= ent.NUMBER(ax.getText().toString());
-//               B= ent.NUMBER( bx.getText().toString());
-//               C= ent.NUMBER(c.getText().toString());
-               alg.setABC(A, B, C);}
-                
-                
-            
+                String ja, jb, jc;
+                Algorithm alg = new Algorithm();
+                ProgrammEnter ent = new ProgrammEnter();
+                ja = ax.getText().toString();
+                A = Double.parseDouble(ja);
+                jb = bx.getText().toString();
+                B = Double.parseDouble(jb);
+                jc = c.getText().toString();
+                C = Double.parseDouble(jc);
+                alg.setABC(A, B, C);
+                resultX.setText(alg.Algorithm());
+
+            }
+
         });
-        
-        
-    
-        
-        clearButton=new JButton("Clear");
+
+        clearButton = new JButton("Clear");
         clearButton.setBounds(440, 133, 100, 28);
         tabmain.add(clearButton);
-        
-        exitButton=new JButton("Exit");
+
+        exitButton = new JButton("Exit");
         exitButton.setBounds(450, 279, 80, 28);
         tabmain.add(exitButton);
-        
-        
-        
-        
+
         setResizable(false);//запрет на изменение размера окна
         setVisible(true);//видимость окна
         setLocationRelativeTo(null);//окно запиливаем в центр 
-        
+
     }
 }
