@@ -1,17 +1,17 @@
+
 public class Algorithm {
 
     double a, b, c;
     double D, x1, x2;
-    
-    
-    
-    void setABC(double A, double B, double C){
-        a=A;
-        b=B;
-        c=C;
+
+    public void setABC(double A, double B, double C) {
+        a = A;
+        b = B;
+        c = C;
     }
 
-     void Algorithm() {
+    public String Algorithm() {
+        String s = null;
         D = (Math.pow(b, 2)) - 4 * a * c;
         System.out.println("Diskriminants: " + D);
         if (D > 0) {
@@ -20,15 +20,19 @@ public class Algorithm {
             x2 = (-b - (Math.sqrt(D))) / (2 * a);
             System.out.println("Первый корень = " + x1);
             System.out.println("Второй корень = " + x2);
+            s = "Первый корень = " + x1 + "Второй корень = " + x2;
+            return s;
         }
         if (D == 0) {
             System.out.println("Дискриминант равен 0 корни равны,следовательно корень-один");
             x1 = (-b + (Math.sqrt(D))) / (2 * a);
             System.out.println("Корень =" + x1);
+            s = "Корень =" + x1;
+            return s;
         } else {
             System.out.println("дискриминант меньше 0-корни не вещественные");
+            s = "дискриминант меньше 0-корни не вещественные";
+            return s;
         }
-        
     }
 }
-
