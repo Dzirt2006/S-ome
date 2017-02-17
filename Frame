@@ -90,6 +90,7 @@ public class Frame extends JFrame {
 //        resultD = new JTextArea();     //запаска
 //        resultD.setBounds(50, 133, 128, 28);
 //        tabmain.add(resultD);
+
         resultX = new JTextArea();
         resultX.setBounds(50, 171, 140, 48);
         tabmain.add(resultX);
