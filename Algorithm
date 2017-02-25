@@ -25,7 +25,7 @@ public class Algorithm {
         }
         if (D == 0) {
             System.out.println("Дискриминант равен 0 корни равны,следовательно корень-один");
-            x1 = (-b + (Math.sqrt(D))) / (2 * a);
+            x1 = -b  / (2 * a);
             System.out.println("Корень =" + x1);
             s = "Корень =" + x1;
             return s;
